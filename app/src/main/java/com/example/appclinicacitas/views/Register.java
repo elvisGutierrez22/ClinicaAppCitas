@@ -18,7 +18,16 @@ public class Register extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         Button botonIrAVistaLogin = findViewById(R.id.btnRegister);
+        Button botonIrAVistaLogin2 = findViewById(R.id.btnLogin);
         botonIrAVistaLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Login.class);
+                startActivity(intent);
+            }
+        });
+
+        botonIrAVistaLogin2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Login.class);

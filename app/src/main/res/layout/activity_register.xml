@@ -26,14 +26,14 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="110dp"
-                android:layout_marginTop="50dp"
+                android:layout_marginTop="10dp"
                 android:contentDescription="Registrarse"
                 app:srcCompat="@drawable/user_register" />
 
             <LinearLayout
                 android:id="@+id/formLogin"
                 android:layout_width="match_parent"
-                android:layout_height="570dp"
+                android:layout_height="640dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/borde_login"
                 android:gravity="center"
@@ -67,22 +67,19 @@
                     android:padding="16dp" />
 
                 <EditText
-                    android:id="@+id/editTextDOB"
+                    android:id="@+id/editTextEdad"
                     android:layout_width="300dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="12dp"
                     android:background="@drawable/borde_edittext"
-                    android:clickable="true"
-                    android:focusable="false"
+                    android:ems="10"
                     android:textColorHint="@color/md_grey_300"
                     android:hint="Edad"
                     android:importantForAutofill="no"
-                    android:inputType="date"
-                    android:maxLines="1"
-                    android:onClick="showDatePickerDialog"
-                    android:padding="16dp"
-                    tools:ignore="KeyboardInaccessibleWidget" />
+                    android:inputType="textPersonName"
+                    android:padding="16dp" />
+
 
                 <EditText
                     android:id="@+id/editTextPhone"
@@ -140,14 +137,24 @@
                     android:inputType="textPassword"
                     android:padding="16dp" />
 
-                <Button
-                    android:layout_width="300dp"
-                    android:layout_height="60dp"
-                    android:layout_marginTop="12dp"
-                    android:background="@drawable/borde_boton"
-                    android:text="Crear cuenta"
-                    android:textColor="@color/white"
-                    android:id="@+id/btnRegister"/>
+                    <Button
+                        android:layout_width="160dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/borde_boton"
+                        android:text="Crear cuenta"
+                        android:textColor="@color/white"
+                        android:id="@+id/btnRegister"/>
+
+                    <Button
+                        android:layout_width="160dp"
+                        android:layout_height="50dp"
+                        android:layout_marginTop="20dp"
+                        android:background="@drawable/borde_boton"
+                        android:text="Ya tengo cuenta"
+                        android:textColor="@color/white"
+                        android:id="@+id/btnLogin"/>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
