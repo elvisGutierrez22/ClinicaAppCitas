@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_deep_purple_400"
+    android:background="@color/md_deep_purple_350"
     tools:context=".views.Login">
 
     <LinearLayout
@@ -50,6 +50,7 @@
                 android:padding="16dp"
                 android:textSize="20dp"
                 android:textColorHint="@color/md_grey_300"
+                android:textColor="@color/black"
                 android:background="@drawable/borde_edittext"
                 android:layout_gravity="center"
                 android:hint="Email"
@@ -64,6 +65,7 @@
                 android:ems="10"
                 android:padding="16dp"
                 android:textSize="20dp"
+                android:textColor="@color/black"
                 android:textColorHint="@color/md_grey_300"
                 android:background="@drawable/borde_edittext"
                 android:layout_gravity="center"

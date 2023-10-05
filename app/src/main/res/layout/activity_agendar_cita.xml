@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_deep_purple_400"
+    android:background="@color/md_deep_purple_350"
     tools:context=".views.AgendarCita">
 
     <ScrollView
@@ -47,7 +47,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:spinnerMode="dialog"
-                    android:background="@color/md_deep_purple_200"
+                    android:background="@color/md_deep_purple_50"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="10dp"/>
 
@@ -66,10 +66,10 @@
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
-                android:background="@color/md_deep_purple_200"
+                android:background="@color/md_deep_purple_50"
                 android:spinnerMode="dialog" />
 
-                <TextView
+            <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Hora"
@@ -82,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:spinnerMode="dialog"
-                    android:background="@color/md_deep_purple_200"
+                    android:background="@color/md_deep_purple_50"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="10dp"/>
 

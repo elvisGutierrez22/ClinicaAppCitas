@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/md_deep_purple_400"
+    android:background="@color/md_deep_purple_350"
     tools:context=".views.MainActivity">
 
     <ScrollView
@@ -28,6 +28,7 @@
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:text="Menu principal"
+                android:textStyle="bold"
                 android:textColor="@color/white"
                 android:layout_marginTop="30dp"
                 android:textSize="40sp" />
@@ -44,7 +45,7 @@
             <LinearLayout
                 android:id="@+id/formLogin"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="350dp"
                 android:layout_marginHorizontal="20dp"
                 android:background="@drawable/borde_login"
                 android:gravity="center"
