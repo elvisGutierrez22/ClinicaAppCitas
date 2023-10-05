@@ -87,6 +87,7 @@
                     android:layout_marginVertical="10dp"/>
 
                 <Button
+                    android:id="@+id/btnAgendarCita"
                     android:background="@drawable/borde_boton"
                     android:layout_width="300dp"
                     android:layout_height="60dp"
