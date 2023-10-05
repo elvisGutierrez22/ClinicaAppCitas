@@ -1,0 +1,9 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.AppClinicaCitas" parent="Theme.Material3.DayNight.NoActionBar">
+        <!-- Customize your dark theme here. -->
+        <item name="colorPrimary">@color/md_deep_purple_500</item>
+
+    </style>
+    <style name="Theme.AppClinicaCitas" parent="Base.Theme.AppClinicaCitas" />
+</resources>

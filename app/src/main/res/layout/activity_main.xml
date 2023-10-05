@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/md_deep_purple_400"
+    tools:context=".views.MainActivity">
+
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textViewName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:text="Menu principal"
+                android:textColor="@color/white"
+                android:layout_marginTop="30dp"
+                android:textSize="40sp" />
+
+            <ImageView
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:contentDescription="Icono principal"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="40dp"
+                app:srcCompat="@drawable/icono_principal" />
+
+            <LinearLayout
+                android:id="@+id/formLogin"
+                android:layout_width="match_parent"
+                android:layout_height="400dp"
+                android:layout_marginHorizontal="20dp"
+                android:background="@drawable/borde_login"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="20dp">
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:contentDescription="Agendar cita"
+                        app:srcCompat="@drawable/icono_agendar" />
+
+
+                    <Button
+                        android:id="@+id/btnCita"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:background="@drawable/borde_boton"
+                        android:text="Agendar cita" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="20dp">
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:contentDescription="Ver citas"
+                        app:srcCompat="@drawable/icono_ver_citas" />
+
+                    <Button
+                        android:id="@+id/btnVerCitas"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:background="@drawable/borde_boton"
+                        android:text="Ver citas" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginVertical="20dp">
+
+                    <ImageView
+                        android:layout_width="200dp"
+                        android:layout_height="60dp"
+                        android:layout_weight="1"
+                        android:contentDescription="Icono salir"
+                        app:srcCompat="@drawable/icono_salir" />
+
+                    <Button
+                        android:id="@+id/btnSalirMenu"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="20dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/white"
+                        android:background="@drawable/borde_boton"
+                        android:text="Salir" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
