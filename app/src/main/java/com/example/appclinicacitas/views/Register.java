@@ -36,7 +36,7 @@ public class Register extends AppCompatActivity {
         botonIrAVistaLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (validateForm()) {
+                if (validateRegister()) {
                     showRegistrationConfirmation();
                     Intent intent = new Intent(getApplicationContext(), Login.class);
                     startActivity(intent);
@@ -54,7 +54,7 @@ public class Register extends AppCompatActivity {
     }
 
 
-    private boolean validateForm() {
+    private boolean validateRegister() {
         String firstName = editTextFirstName.getText().toString();
         String lastName = editTextLastName.getText().toString();
         String age = editTextEdad.getText().toString();
