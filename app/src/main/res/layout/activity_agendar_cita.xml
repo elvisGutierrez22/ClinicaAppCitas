@@ -22,17 +22,68 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="30dp"
                 android:contentDescription="Icono cita"
-                android:layout_marginTop="80dp"
+                android:layout_marginTop="30dp"
                 app:srcCompat="@drawable/icono_agendar" />
 
         <LinearLayout
             android:id="@+id/formLogin"
             android:layout_width="match_parent"
-            android:layout_height="450dp"
+            android:layout_height="600dp"
             android:layout_marginHorizontal="30dp"
             android:background="@drawable/borde_login"
             android:gravity="center"
             android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Nombre paciente"
+                    android:textSize="20dp"
+                    android:textColor="@color/white"
+                    android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/editTextName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:padding="13dp"
+                android:textSize="20dp"
+                android:textColorHint="@color/md_grey_300"
+                android:textColor="@color/black"
+                android:background="@drawable/borde_edittext"
+                android:layout_gravity="center"
+                android:hint="Nombre"
+                android:importantForAutofill="no"
+                android:inputType="textPersonName"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Telefono paciente"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/editTextPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/borde_edittext"
+                android:ems="10"
+                android:textColor="@color/black"
+                android:hint="Telefono"
+                android:maxLength="8"
+                android:textColorHint="@color/md_grey_300"
+                android:importantForAutofill="no"
+                android:inputType="phone"
+                android:padding="13dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginVertical="10dp"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -47,7 +98,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:spinnerMode="dialog"
-                    android:background="@color/md_deep_purple_50"
+                    android:padding="13dp"
+                    android:background="@drawable/borde_edittext"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="10dp"/>
 
@@ -64,9 +116,10 @@
                 android:id="@+id/spinnerDate"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:padding="13dp"
                 android:layout_marginHorizontal="20dp"
                 android:layout_marginVertical="10dp"
-                android:background="@color/md_deep_purple_50"
+                android:background="@drawable/borde_edittext"
                 android:spinnerMode="dialog" />
 
             <TextView
@@ -82,7 +135,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
                     android:spinnerMode="dialog"
-                    android:background="@color/md_deep_purple_50"
+                    android:padding="13dp"
+                    android:background="@drawable/borde_edittext"
                     android:layout_marginHorizontal="20dp"
                     android:layout_marginVertical="10dp"/>
 

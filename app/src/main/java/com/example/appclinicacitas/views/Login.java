@@ -68,6 +68,6 @@ public class Login extends AppCompatActivity {
     }
 
     private void showLoginConfirmation() {
-        Toast.makeText(this, "¡Bienvenido", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "¡Bienvenido!", Toast.LENGTH_LONG).show();
     }
 }
