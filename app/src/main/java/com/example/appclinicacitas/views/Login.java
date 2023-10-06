@@ -13,13 +13,15 @@ import com.example.appclinicacitas.R;
 
 public class Login extends AppCompatActivity {
 
-    EditText editTextEmail;
+    EditText editTextEmail, editTextPassword;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
         editTextEmail = findViewById(R.id.editTextEmail);
+        editTextPassword = findViewById(R.id.editTextPassword);
 
         Button botonIrAVistaLogin = findViewById(R.id.btnLogin);
         botonIrAVistaLogin.setOnClickListener(new View.OnClickListener() {
@@ -46,6 +48,13 @@ public class Login extends AppCompatActivity {
     }
     private boolean validateLogin() {
         String email1 = editTextEmail.getText().toString();
+        String password = editTextPassword.getText().toString();
+
+        // Validacion de todos los campos vacios
+        if (email1.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Todos los campos son obligatorios.", Toast.LENGTH_SHORT).show();
+            return false;
+        }
 
         // Validación de correo electrónico
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
