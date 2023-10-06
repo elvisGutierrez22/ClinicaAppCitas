@@ -79,8 +79,9 @@
                     android:ems="10"
                     android:textColorHint="@color/md_grey_300"
                     android:hint="Edad"
+                    android:maxLength="2"
+                    android:inputType="date"
                     android:importantForAutofill="no"
-                    android:inputType="textPersonName"
                     android:padding="16dp" />
 
 
@@ -94,6 +95,7 @@
                     android:ems="10"
                     android:textColor="@color/black"
                     android:hint="Telefono"
+                    android:maxLength="8"
                     android:textColorHint="@color/md_grey_300"
                     android:importantForAutofill="no"
                     android:inputType="phone"
