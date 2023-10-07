@@ -28,11 +28,13 @@ public class Login extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                if(validateLogin()){
-                    showLoginConfirmation();
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
-                }
+                //if(validateLogin()){
+                   // showLoginConfirmation();
+                   // Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                   // startActivity(intent);
+                //}
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
 
         });
