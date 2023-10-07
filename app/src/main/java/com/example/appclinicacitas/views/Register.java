@@ -95,13 +95,13 @@ public class Register extends AppCompatActivity {
                 changeInProgress(false);
                 if (task.isSuccessful()) {
                     // El usuario se ha registrado correctamente.
-                    Toast.makeText(Register.this,"Cuenta creada correctamente, verificar email", Toast.LENGTH_SHORT).show();;
+                    Utility.showToast(Register.this,"Cuenta creada correctamente, verificar email");
                     firebaseAuth.getCurrentUser().sendEmailVerification();
                     firebaseAuth.signOut();
                     finish();
                     // Ahora, puedes guardar los detalles adicionales del usuario en Firestore o Realtime Database.
                 } else {
-                    Toast.makeText(Register.this, task.getException().getLocalizedMessage(),Toast.LENGTH_SHORT).show();
+                    Utility.showToast(Register.this, task.getException().getLocalizedMessage());
                 }
                 changeInProgress(false);
             }

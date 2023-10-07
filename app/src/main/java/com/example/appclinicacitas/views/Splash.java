@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.os.Handler;
 
 import com.example.appclinicacitas.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class Splash extends AppCompatActivity {
 
@@ -19,6 +21,7 @@ public class Splash extends AppCompatActivity {
             @Override
             public void run() {
                 startActivity(new Intent(Splash.this, Login.class));
+
                 /*if(currentUser == null){
                     startActivity(new Intent(SplashActivity.this,))
                 }
