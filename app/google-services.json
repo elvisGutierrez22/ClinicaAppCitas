@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "603407054072",
+    "project_id": "appclinicacitas",
+    "storage_bucket": "appclinicacitas.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603407054072:android:2569b7697e21f1c55ef70d",
+        "android_client_info": {
+          "package_name": "com.example.appclinicacitas"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5zJM4Bej7SnJQ6F2MjAvEn5f5OdVXWOk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
