@@ -1,23 +1,25 @@
 package com.example.appclinicacitas.views;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ImageButton;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.appclinicacitas.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -25,20 +27,28 @@ import java.util.Locale;
 
 public class AgendarCita extends AppCompatActivity {
 
+    private EditText editTextName;
+    private EditText editTextPhone;
+    private Spinner spinnerType;
+    private Spinner spinnerTime;
     private EditText editTextDate;
+    private Button botonIrAVistaPrincipal;
     private Calendar calendar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_agendar_cita);
 
-        //Darle opciones a los spinners
-
-        Spinner spinnerType = findViewById(R.id.spinnerType);
-        Spinner spinnerTime = findViewById(R.id.spinnerTime);
-        EditText editTextName = findViewById(R.id.editTextName);
-        EditText editTextPhone = findViewById(R.id.editTextPhone);
+        spinnerType = findViewById(R.id.spinnerType);
+        spinnerTime = findViewById(R.id.spinnerTime);
+        editTextName = findViewById(R.id.editTextName);
+        editTextPhone = findViewById(R.id.editTextPhone);
+        botonIrAVistaPrincipal = findViewById(R.id.btnAgendarCita);
+        // Referencia al EditText para la fecha
+        editTextDate = findViewById(R.id.editTextDate);
+        calendar = Calendar.getInstance();
 
         String[] elementos = {"Seleccione un servicio","Limpieza dental", "Extraccion dental", "Empastes dental", "Endodoncia",
                                 "Corona dental", "Implante dental", "Ortodoncia", "Blanqueamiento dental", "Tratamiento de encía",
@@ -69,10 +79,6 @@ public class AgendarCita extends AppCompatActivity {
         spinnerTime.setAdapter(adapterTime);
         spinnerTime.setSelection(0);
 
-        // Referencia al EditText para la fecha
-        editTextDate = findViewById(R.id.editTextDate);
-        calendar = Calendar.getInstance();
-
         // Configura un OnClickListener para mostrar el DatePickerDialog cuando se hace clic en el EditText
         editTextDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,11 +87,10 @@ public class AgendarCita extends AppCompatActivity {
             }
         });
 
-
-        Button botonIrAVistaPrincipal = findViewById(R.id.btnAgendarCita);
         botonIrAVistaPrincipal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Cita cita = new Cita();
                 String selectedService = spinnerType.getSelectedItem().toString();
                 String selectedTime = spinnerTime.getSelectedItem().toString();
                 String selectedDate = editTextDate.getText().toString();
@@ -108,7 +113,13 @@ public class AgendarCita extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Por favor, seleccione una fecha válida", Toast.LENGTH_SHORT).show();
                 } else {
 
-
+                    if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                        // El usuario está autenticado, puedes llamar a saveAppointmentToFirebase() aquí
+                        saveAppointmentToFirebase(cita);
+                    } else {
+                        // El usuario no está autenticado, muestra un mensaje o toma alguna acción apropiada
+                        Utility.showToast(AgendarCita.this, "Usuario no autenticado");
+                    }
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
@@ -149,5 +160,43 @@ public class AgendarCita extends AppCompatActivity {
     private void updateEditTextDate() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
         editTextDate.setText(sdf.format(calendar.getTime()));
+    }
+
+    void saveAppointment(){
+        String namePatient = editTextName.getText().toString();
+        String numberPatient = editTextPhone.getText().toString();
+        String service = spinnerType.getSelectedItem().toString();
+        String date = editTextDate.getText().toString();
+        String time = spinnerType.getSelectedItem().toString();
+
+        Cita cita = new Cita();
+        cita.setName(namePatient);
+        cita.setNumber(numberPatient);
+        cita.setServices(service);
+        cita.setDate(date);
+        cita.setTime(time);
+        cita.setTimestamp(Timestamp.now());
+
+        saveAppointmentToFirebase(cita);
+    }
+
+    void saveAppointmentToFirebase(Cita cita){
+        DocumentReference documentReference;
+
+
+        String message = "Usuario no registrado. Por favor, inicia sesión o regístrate.";
+        documentReference = Utility.getCollectionReferenceForAppointment(this, message).document();
+
+        documentReference.set(cita).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Utility.showToast(AgendarCita.this, "Cita agendada correctamente");
+                    finish();
+                }else{
+                    Utility.showToast(AgendarCita.this, "Fallo al agendar cita");
+                }
+            }
+        });
     }
 }

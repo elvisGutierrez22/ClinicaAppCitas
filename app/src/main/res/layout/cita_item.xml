@@ -46,6 +46,28 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/note_name"
+            android:text="Nombre"
+            android:textColor="@color/white"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="17sp"
+            android:layout_marginVertical="4dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/note_number"
+            android:text="Numero de telefono"
+            android:textColor="@color/white"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="17sp"
+            android:layout_marginVertical="4dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/note_content_text_view"
             android:text="Hora"
             android:textColor="@color/white"
@@ -57,8 +79,19 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/note_date"
+            android:text="Fecha cita"
+            android:textColor="@color/white"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:textSize="17sp"
+            android:layout_marginVertical="4dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/note_timestamp_text_view"
-            android:text="Fecha"
+            android:text="Fecha de creacion de cita"
             android:textSize="12sp"
             android:textColor="@color/white"
             android:gravity="right"
