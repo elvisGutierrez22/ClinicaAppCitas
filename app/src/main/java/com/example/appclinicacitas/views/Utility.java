@@ -13,7 +13,7 @@ public class Utility {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }
 
-    static CollectionReference getCollectionReferenceForAppointment(Context context, String message){//quitar el Context context, String message
+    static CollectionReference getCollectionReferenceForAppointment(){//quitar el Context context, String message
         //quitar todo esto
         FirebaseAuth auth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = auth.getCurrentUser();
@@ -22,7 +22,6 @@ public class Utility {
             return FirebaseFirestore.getInstance().collection("Citas")
                     .document(currentUser.getUid()).collection("Mis_citas");
         } else {
-            showToast(context, message); // Muestra el mensaje de usuario no registrado
             return null;
         }
 

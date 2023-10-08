@@ -120,6 +120,7 @@ public class AgendarCita extends AppCompatActivity {
                         // El usuario no está autenticado, muestra un mensaje o toma alguna acción apropiada
                         Utility.showToast(AgendarCita.this, "Usuario no autenticado");
                     }
+                    saveAppointment();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
@@ -167,7 +168,7 @@ public class AgendarCita extends AppCompatActivity {
         String numberPatient = editTextPhone.getText().toString();
         String service = spinnerType.getSelectedItem().toString();
         String date = editTextDate.getText().toString();
-        String time = spinnerType.getSelectedItem().toString();
+        String time = spinnerTime.getSelectedItem().toString();
 
         Cita cita = new Cita();
         cita.setName(namePatient);
@@ -183,9 +184,7 @@ public class AgendarCita extends AppCompatActivity {
     void saveAppointmentToFirebase(Cita cita){
         DocumentReference documentReference;
 
-
-        String message = "Usuario no registrado. Por favor, inicia sesión o regístrate.";
-        documentReference = Utility.getCollectionReferenceForAppointment(this, message).document();
+        documentReference = Utility.getCollectionReferenceForAppointment().document();
 
         documentReference.set(cita).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
