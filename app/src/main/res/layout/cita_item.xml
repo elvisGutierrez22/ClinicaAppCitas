@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/note_title_text_view"
+                android:id="@+id/cita_service"
 
                 android:text="Servicio"
                 android:textColor="@color/white"
@@ -46,7 +46,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/note_name"
+            android:id="@+id/cita_name"
             android:text="Nombre"
             android:textColor="@color/white"
             android:maxLines="2"
@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/note_number"
+            android:id="@+id/cita_number"
             android:text="Numero de telefono"
             android:textColor="@color/white"
             android:maxLines="2"
@@ -68,7 +68,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/note_content_text_view"
+            android:id="@+id/cita_time"
             android:text="Hora"
             android:textColor="@color/white"
             android:maxLines="2"
@@ -79,7 +79,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/note_date"
+            android:id="@+id/cita_date"
             android:text="Fecha cita"
             android:textColor="@color/white"
             android:maxLines="2"
@@ -90,7 +90,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/note_timestamp_text_view"
+            android:id="@+id/cita_timestamp_text_view"
             android:text="Fecha de creacion de cita"
             android:textSize="12sp"
             android:textColor="@color/white"
