@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
@@ -10,7 +10,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/md_deep_purple_400"
         android:padding="16dp">
@@ -19,83 +19,180 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Servicio: "
+                android:textColor="@color/white"
+                android:textSize="17sp"
+                android:textStyle="bold"/>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/cita_service"
-
                 android:text="Servicio"
                 android:textColor="@color/white"
-                android:textSize="18sp"
-                android:textStyle="bold"/>
+                android:textSize="17sp"
+                android:layout_marginHorizontal="73dp"/>
 
-            <ImageButton
-                android:id="@+id/delete_note_btn1"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginLeft="8dp"
-                android:layout_marginEnd="6dp"
-                android:background="?attr/selectableItemBackgroundBorderless"
-                android:scaleType="centerInside"
-                android:src="@drawable/icono_delete"
-                android:contentDescription="Eliminar Nota"/>
 
         </RelativeLayout>
 
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cita_name"
-            android:text="Nombre"
-            android:textColor="@color/white"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:textSize="17sp"
-            android:layout_marginVertical="4dp"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cita_number"
-            android:text="Numero de telefono"
-            android:textColor="@color/white"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:textSize="17sp"
-            android:layout_marginVertical="4dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cliente:"
+                android:textColor="@color/white"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="17sp"
+                android:textStyle="bold"
+                android:layout_marginVertical="4dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cita_time"
-            android:text="Hora"
-            android:textColor="@color/white"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:textSize="17sp"
-            android:layout_marginVertical="4dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cita_name"
+                android:text="Nombre"
+                android:textColor="@color/white"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="17sp"
+                android:layout_marginVertical="4dp"
+                android:layout_marginHorizontal="64dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/cita_date"
-            android:text="Fecha cita"
-            android:textColor="@color/white"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:textSize="17sp"
-            android:layout_marginVertical="4dp"/>
+        </RelativeLayout>
 
-        <TextView
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/cita_timestamp_text_view"
-            android:text="Fecha de creacion de cita"
-            android:textSize="12sp"
-            android:textColor="@color/white"
-            android:gravity="right"
-            android:layout_marginVertical="4dp"/>
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Telefono:"
+                android:textColor="@color/white"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="17sp"
+                android:layout_marginVertical="4dp"
+                android:textStyle="bold"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cita_number"
+                android:text="Numero de telefono"
+                android:textColor="@color/white"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="17sp"
+                android:layout_marginVertical="4dp"
+                android:layout_marginHorizontal="78dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hora:"
+                android:textColor="@color/white"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="17sp"
+                android:layout_marginVertical="4dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cita_time"
+                android:text="Hora"
+                android:textColor="@color/white"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="17sp"
+                android:layout_marginVertical="4dp"
+                android:layout_marginHorizontal="45dp"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fecha:"
+                android:textColor="@color/white"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="17sp"
+                android:layout_marginVertical="4dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cita_date"
+                android:text="Fecha cita"
+                android:textColor="@color/white"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textSize="17sp"
+                android:layout_marginVertical="4dp"
+                android:layout_marginHorizontal="55dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Solicitud:"
+                android:textSize="17dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/white"
+                android:layout_marginVertical="4dp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/cita_timestamp_text_view"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="Fecha"
+                android:textSize="17dp"
+                android:textColor="@color/white"
+                android:layout_marginVertical="4dp"
+                android:layout_marginHorizontal="75dp"/>
+        </RelativeLayout>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>
