@@ -115,12 +115,12 @@ public class AgendarCita extends AppCompatActivity {
 
                     if (FirebaseAuth.getInstance().getCurrentUser() != null) {
                         // El usuario está autenticado, puedes llamar a saveAppointmentToFirebase() aquí
-                        saveAppointmentToFirebase(cita);
+                        saveAppointment();
                     } else {
                         // El usuario no está autenticado, muestra un mensaje o toma alguna acción apropiada
                         Utility.showToast(AgendarCita.this, "Usuario no autenticado");
                     }
-                    saveAppointment();
+
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                 }
