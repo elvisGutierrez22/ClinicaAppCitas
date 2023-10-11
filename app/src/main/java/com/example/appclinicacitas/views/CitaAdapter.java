@@ -1,6 +1,7 @@
 package com.example.appclinicacitas.views;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,21 @@ public class CitaAdapter extends FirestoreRecyclerAdapter<Cita, CitaAdapter.Cita
         holder.timeTextView.setText(cita.time);
         holder.dateTextView.setText(cita.date);
         holder.timestampTextView.setText(Utility.timestampToString(cita.timestamp));
+
+        holder.itemView.setOnClickListener((v) -> {
+            Intent intent = new Intent(context, AgendarCita.class);
+            //mando a llamar los datos ya agregndados en
+            intent.putExtra("name", cita.name);
+            intent.putExtra("number", cita.number);
+            intent.putExtra("services", cita.services);
+            intent.putExtra("date", cita.date);
+            intent.putExtra("time", cita.time);
+            intent.putExtra("timestamp", cita.timestamp);
+            String id = this.getSnapshots().getSnapshot(position).getId();
+            intent.putExtra("id", id);
+            context.startActivity(intent);
+
+        });
     }
 
     @NonNull

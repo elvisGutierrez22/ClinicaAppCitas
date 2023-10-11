@@ -35,6 +35,9 @@ public class AgendarCita extends AppCompatActivity {
     private Button botonIrAVistaPrincipal;
     private Calendar calendar;
 
+    //String nelementos para editar cita
+    String name, number, services, date, time, timestamp, id;
+    boolean modeEdit = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +81,27 @@ public class AgendarCita extends AppCompatActivity {
         spinnerType.setSelection(0);
         spinnerTime.setAdapter(adapterTime);
         spinnerTime.setSelection(0);
+        //---------Editar
+        //Obtener datos de la cita si estamos en modo edicion
+        Intent intent = getIntent();
+        if(intent != null){
+            id = intent.getStringExtra("id");
+            if(id != null && !id.isEmpty()){
+                modeEdit = true;
+                name = intent.getStringExtra("name");
+                number = intent.getStringExtra("number");
+                services = intent.getStringExtra("services");
+                date = intent.getStringExtra("date");
+                time = intent.getStringExtra("time");
 
+                editTextName.setText(name);
+                editTextPhone.setText(number);
+                spinnerType.setSelection(adapterType.getPosition(services));
+                spinnerTime.setSelection(adapterTime.getPosition(time));
+                editTextDate.setText(date);
+            }
+        }
+        //---Fina de editar
         // Configura un OnClickListener para mostrar el DatePickerDialog cuando se hace clic en el EditText
         editTextDate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,8 +206,13 @@ public class AgendarCita extends AppCompatActivity {
 
     void saveAppointmentToFirebase(Cita cita){
         DocumentReference documentReference;
+        //funcionalidad de editas
+        if(modeEdit){
+            documentReference = Utility.getCollectionReferenceForAppointment().document(id);
+        }else{
+            documentReference = Utility.getCollectionReferenceForAppointment().document();
+        }
 
-        documentReference = Utility.getCollectionReferenceForAppointment().document();
 
         documentReference.set(cita).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
