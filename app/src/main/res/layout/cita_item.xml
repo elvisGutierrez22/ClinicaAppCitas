@@ -28,6 +28,16 @@
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold"/>
+            <ImageView
+                android:id="@+id/deleteButton"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:baselineAlignBottom="false"
+                android:src="@drawable/icono_delete"
+                android:onClick="deleteAppointment"/>
+
 
             <TextView
                 android:layout_width="wrap_content"

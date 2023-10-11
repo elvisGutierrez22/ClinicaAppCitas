@@ -5,7 +5,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,6 +49,25 @@ public class CitaAdapter extends FirestoreRecyclerAdapter<Cita, CitaAdapter.Cita
             context.startActivity(intent);
 
         });
+
+        //Eliminar cita
+        holder.deleteButton.setOnClickListener(v -> {
+            // Este bloque de código se ejecutará cuando el usuario haga clic en un elemento de la lista.
+            // Se obtiene el ID del documento de Firestore correspondiente a esta nota.
+            String id = this.getSnapshots().getSnapshot(position).getId();
+            // Se utiliza la función "deleteDocument()" para eliminar el documento de Firestore.
+            // Se utiliza la función "getSnapshots().getSnapshot(position).getId()".
+            Utility.getCollectionReferenceForAppointment().document(id).delete().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Utility.showToast(context, "Cita eliminada");
+                    // Actualiza el RecyclerView después de la eliminación
+                    notifyDataSetChanged();
+                } else {
+                    Utility.showToast(context, "Error al eliminar cita");
+                }
+            });
+
+        });
     }
 
     @NonNull
@@ -59,6 +81,7 @@ public class CitaAdapter extends FirestoreRecyclerAdapter<Cita, CitaAdapter.Cita
 
         TextView serviceTextView, nameTextView, phoneTextView, timeTextView, dateTextView, timestampTextView;
 
+        ImageView deleteButton;
         public CitaViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -68,6 +91,7 @@ public class CitaAdapter extends FirestoreRecyclerAdapter<Cita, CitaAdapter.Cita
             timeTextView = itemView.findViewById(R.id.cita_time);
             dateTextView = itemView.findViewById(R.id.cita_date);
             timestampTextView = itemView.findViewById(R.id.cita_timestamp_text_view);
+            deleteButton = itemView.findViewById(R.id.deleteButton);
 
 
 
