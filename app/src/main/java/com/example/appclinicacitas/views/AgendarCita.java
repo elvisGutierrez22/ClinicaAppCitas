@@ -207,9 +207,9 @@ public class AgendarCita extends AppCompatActivity {
     void saveAppointmentToFirebase(Cita cita){
         DocumentReference documentReference;
         //funcionalidad de editas
-        if(modeEdit){
+        if (modeEdit && id != null && !id.isEmpty()) {
             documentReference = Utility.getCollectionReferenceForAppointment().document(id);
-        }else{
+        } else {
             documentReference = Utility.getCollectionReferenceForAppointment().document();
         }
 
