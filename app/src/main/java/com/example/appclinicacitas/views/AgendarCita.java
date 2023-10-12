@@ -53,10 +53,10 @@ public class AgendarCita extends AppCompatActivity {
         editTextDate = findViewById(R.id.editTextDate);
         calendar = Calendar.getInstance();
 
-        String[] elementos = {"Seleccione un servicio","Limpieza dental", "Extraccion dental", "Empastes dental", "Endodoncia",
-                                "Corona dental", "Implante dental", "Ortodoncia", "Blanqueamiento dental", "Tratamiento de encía",
-                                "Prótesis dental", "Radiografía dental", "Cirugía oral y maxilofacial", "Tratamiento de ortodoncia invisible",
-                                "Tratamiento de odontopediatría", "Tratamiento de periodoncia"};
+        String[] elementos = {"Seleccione un servicio","Limpieza dental:$25 ", "Extraccion dental: $25", "Empastes dental: $25", "Endodoncia: $200",
+                                "Corona dental: $150", "Implante dental: $1,000", "Ortodoncia: $350", "Blanqueamiento dental: $200", "Tratamiento de encía: $300",
+                                "Prótesis dental: $150", "Radiografía dental:$40", "Cirugía oral y maxilofacial: $600", "Tratamiento de ortodoncia invisible: $200",
+                                "Tratamiento de odontopediatría: $40", "Tratamiento de periodoncia: $40"};
         String[] horario = {
                 "Seleccione un horario",
                 "6:00 am - 7:00 am",
