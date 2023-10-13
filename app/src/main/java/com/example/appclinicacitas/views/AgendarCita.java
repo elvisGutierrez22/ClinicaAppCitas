@@ -121,8 +121,10 @@ public class AgendarCita extends AppCompatActivity {
 
                 if (name.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Por favor, Ingrese un nombre", Toast.LENGTH_SHORT).show();
+                }if (name.length() > 32){
+                    Toast.makeText(getApplicationContext(), "El nombre no puede tener más de 32 caracteres", Toast.LENGTH_SHORT).show();
                 } else if (!name.matches("[a-zA-Z ]+")) {
-                    Toast.makeText(getApplicationContext(), "El nombre solo debe contener letras", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "El nombre solo debe contener letras y espacios", Toast.LENGTH_SHORT).show();
                 }else if (phone.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Por favor, Ingrese un numero de telefono", Toast.LENGTH_SHORT).show();
                 }else if (phone.length() != 8) {

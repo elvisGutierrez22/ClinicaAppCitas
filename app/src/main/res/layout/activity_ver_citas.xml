@@ -24,17 +24,6 @@
             android:textColor="@color/md_white_1000"
             android:textStyle="bold"/>
 
-        <ImageButton
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:id="@+id/btnSalirCitas"
-            android:src="@drawable/icono_close"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Abrir menú de opciones"
-            />
-
     </RelativeLayout>
 
     <androidx.appcompat.widget.SearchView
@@ -51,23 +40,11 @@
         app:queryBackground="@null"
         app:queryHint="Buscar cliente" />
 
-    <Spinner
-        android:id="@+id/spinnerTime"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:spinnerMode="dialog"
-        android:layout_below="@id/searchViewhome"
-        android:background="@drawable/borderspiner"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyler_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/spinnerTime"
+        android:layout_below="@id/searchViewhome"
         android:layout_marginTop="22dp"
         android:padding="1dp" />
 </RelativeLayout>
