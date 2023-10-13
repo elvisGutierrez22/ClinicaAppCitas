@@ -14,6 +14,7 @@ import android.widget.ImageButton;
 import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.Toast;
+import androidx.appcompat.widget.SearchView;
 
 import com.example.appclinicacitas.R;
 import com.example.appclinicacitas.views.MainActivity;
@@ -25,6 +26,8 @@ public class VerCitas extends AppCompatActivity {
     private RecyclerView  recyclerView;
     private ImageButton menuBtn;
     private Spinner spinnerTime;
+
+    private SearchView searchView;
     CitaAdapter citaAdapter;
 
     @Override
@@ -35,6 +38,9 @@ public class VerCitas extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyler_view);
         menuBtn = findViewById(R.id.btnSalirCitas);
         spinnerTime = findViewById(R.id.spinnerTime);
+        searchView = findViewById(R.id.searchViewhome);
+
+
 
         String[] horario = {
                 "Seleccione un horario",
@@ -57,6 +63,7 @@ public class VerCitas extends AppCompatActivity {
 
         menuBtn.setOnClickListener((v)->showMenu());
         setupRecyclerView();
+        setupSearchView();
     }
 
     void showMenu(){
@@ -90,4 +97,33 @@ public class VerCitas extends AppCompatActivity {
         super.onResume();
         citaAdapter.notifyDataSetChanged();
     }
+
+    void setupSearchView() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String queryText) {
+                Toast.makeText(VerCitas.this,"Resultados...", Toast.LENGTH_SHORT).show();
+                buscarcita(queryText);
+                return false;
+            }
+            @Override
+            public boolean onQueryTextChange(String newText){
+                if (newText.isEmpty()) {
+                    buscarcita(newText);
+                }
+                return false;
+            }
+        });
+    }
+
+    void buscarcita(String queryText){
+        FirestoreRecyclerOptions<Cita> firestoreRecyclerOptions = new FirestoreRecyclerOptions.Builder<Cita>()
+                .setQuery(Utility.getCollectionReferenceForAppointment().orderBy("name")
+                        .startAt(queryText).endAt(queryText+"\uf8ff"), Cita.class).build();
+        citaAdapter = new CitaAdapter(firestoreRecyclerOptions, this);
+        citaAdapter.startListening() ;
+        recyclerView.setAdapter(citaAdapter);
+    }
+
+
 }
