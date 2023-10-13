@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.appclinicacitas.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,23 +24,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button botonIrAVistaAgendarCIta = findViewById(R.id.btnCita);
-        botonIrAVistaAgendarCIta.setOnClickListener(new View.OnClickListener() {
+        Button botonIrAVistaAgendarCita = findViewById(R.id.btnCita);
+        botonIrAVistaAgendarCita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), AgendarCita.class);
-                startActivity(intent);
+                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                    Intent intent = new Intent(getApplicationContext(), AgendarCita.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Usuario no logeado", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                    startActivity(intent);
+                }
             }
         });
+
 
         Button botonIrAVistaVerCitas = findViewById(R.id.btnVerCitas);
         botonIrAVistaVerCitas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), VerCitas.class);
-                startActivity(intent);
+                if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                    Intent intent = new Intent(getApplicationContext(), VerCitas.class);
+                    startActivity(intent);
+                } else {
+                    Toast.makeText(getApplicationContext(), "Usuario no logeado", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(getApplicationContext(), Login.class);
+                    startActivity(intent);
+                }
             }
         });
+
 
         botonIrAVistaLogin = findViewById(R.id.btnSalirMenu);
         botonIrAVistaLogin.setOnClickListener((v)->showMenu());
@@ -57,9 +72,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 FirebaseAuth.getInstance().signOut();
 
-                Intent intent = new Intent(getApplicationContext(), Login.class);
-                startActivity(intent);
-                finish(); // Cierra la actividad actual
+                finishAffinity();
             }
         });
 

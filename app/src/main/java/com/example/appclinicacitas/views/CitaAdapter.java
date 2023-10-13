@@ -52,11 +52,9 @@ public class CitaAdapter extends FirestoreRecyclerAdapter<Cita, CitaAdapter.Cita
 
         //Eliminar cita
         holder.deleteButton.setOnClickListener(v -> {
-            // Este bloque de código se ejecutará cuando el usuario haga clic en un elemento de la lista.
-            // Se obtiene el ID del documento de Firestore correspondiente a esta nota.
+
             String id = this.getSnapshots().getSnapshot(position).getId();
-            // Se utiliza la función "deleteDocument()" para eliminar el documento de Firestore.
-            // Se utiliza la función "getSnapshots().getSnapshot(position).getId()".
+
             Utility.getCollectionReferenceForAppointment().document(id).delete().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
                     Utility.showToast(context, "Cita eliminada");
