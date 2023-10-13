@@ -19,7 +19,10 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -112,7 +115,6 @@ public class AgendarCita extends AppCompatActivity {
         botonIrAVistaPrincipal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Cita cita = new Cita();
                 String selectedService = spinnerType.getSelectedItem().toString();
                 String selectedTime = spinnerTime.getSelectedItem().toString();
                 String selectedDate = editTextDate.getText().toString();
@@ -120,36 +122,44 @@ public class AgendarCita extends AppCompatActivity {
                 String phone = editTextPhone.getText().toString();
 
                 if (name.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Por favor, Ingrese un nombre", Toast.LENGTH_SHORT).show();
-                }if (name.length() > 32){
+                    Toast.makeText(getApplicationContext(), "Por favor, ingrese un nombre", Toast.LENGTH_SHORT).show();
+                } else if (name.length() > 32) {
                     Toast.makeText(getApplicationContext(), "El nombre no puede tener más de 32 caracteres", Toast.LENGTH_SHORT).show();
                 } else if (!name.matches("[a-zA-Z ]+")) {
                     Toast.makeText(getApplicationContext(), "El nombre solo debe contener letras y espacios", Toast.LENGTH_SHORT).show();
-                }else if (phone.isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Por favor, Ingrese un numero de telefono", Toast.LENGTH_SHORT).show();
-                }else if (phone.length() != 8) {
+                } else if (phone.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Por favor, ingrese un número de teléfono", Toast.LENGTH_SHORT).show();
+                } else if (phone.length() != 8) {
                     Toast.makeText(getApplicationContext(), "El número de teléfono debe tener exactamente 8 dígitos", Toast.LENGTH_SHORT).show();
-                }else if (selectedService.equals("Seleccione un servicio")) {
+                } else if (selectedService.equals("Seleccione un servicio")) {
                     Toast.makeText(getApplicationContext(), "Por favor, seleccione un servicio válido", Toast.LENGTH_SHORT).show();
                 } else if (selectedTime.equals("Seleccione un horario")) {
                     Toast.makeText(getApplicationContext(), "Por favor, seleccione un horario válido", Toast.LENGTH_SHORT).show();
                 } else if (selectedDate.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Por favor, seleccione una fecha válida", Toast.LENGTH_SHORT).show();
-                } else {
-
-                    if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-                        // El usuario está autenticado, puedes llamar a saveAppointmentToFirebase() aquí
-                        saveAppointment();
+                } else if (FirebaseAuth.getInstance().getCurrentUser() != null) {
+                    // El usuario está autenticado
+                    if (modeEdit && id != null && !id.isEmpty()) {
+                        // Modo edición
+                        if (date.equals(selectedDate) && time.equals(selectedTime)) {
+                            // No se realizaron cambios en la fecha ni en la hora, permite que el usuario permanezca en la vista de edición
+                            Toast.makeText(getApplicationContext(), "No se realizaron cambios en la fecha ni en la hora.", Toast.LENGTH_SHORT).show();
+                        } else {
+                            // Se realizaron cambios, puedes actualizar la cita
+                            saveAppointment();
+                        }
                     } else {
-                        // El usuario no está autenticado, muestra un mensaje o toma alguna acción apropiada
-                        Utility.showToast(AgendarCita.this, "Usuario no autenticado");
+                        // Modo de creación de cita
+                        saveAppointment();
                     }
-
-                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                    startActivity(intent);
+                } else {
+                    // El usuario no está autenticado, muestra un mensaje o toma alguna acción apropiada
+                    Utility.showToast(AgendarCita.this, "Usuario no autenticado");
                 }
             }
         });
+
+
 
 // ...
 
@@ -187,23 +197,44 @@ public class AgendarCita extends AppCompatActivity {
         editTextDate.setText(sdf.format(calendar.getTime()));
     }
 
-    void saveAppointment(){
+    void saveAppointment() {
         String namePatient = editTextName.getText().toString();
         String numberPatient = editTextPhone.getText().toString();
         String service = spinnerType.getSelectedItem().toString();
         String date = editTextDate.getText().toString();
         String time = spinnerTime.getSelectedItem().toString();
 
-        Cita cita = new Cita();
-        cita.setName(namePatient);
-        cita.setNumber(numberPatient);
-        cita.setServices(service);
-        cita.setDate(date);
-        cita.setTime(time);
-        cita.setTimestamp(Timestamp.now());
+        CollectionReference citasCollection = Utility.getCollectionReferenceForAppointment();
 
-        saveAppointmentToFirebase(cita);
+        Query query = citasCollection.whereEqualTo("date", date).whereEqualTo("time", time);
+
+        query.get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                if (task.isSuccessful()) {
+                    if (task.getResult().isEmpty()) {
+                        // No se encontró una cita existente para la misma fecha y hora, puedes guardar la nueva cita
+                        Cita cita = new Cita();
+                        cita.setName(namePatient);
+                        cita.setNumber(numberPatient);
+                        cita.setServices(service);
+                        cita.setDate(date);
+                        cita.setTime(time);
+                        cita.setTimestamp(Timestamp.now());
+
+                        saveAppointmentToFirebase(cita);
+                    } else {
+                        // Ya existe una cita para la misma fecha y hora, muestra un mensaje de error
+                        Toast.makeText(getApplicationContext(), "Ya hay una cita programada para esta fecha y hora.", Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // Error al realizar la consulta a Firebase
+                    Utility.showToast(AgendarCita.this, "Error al verificar la disponibilidad de la cita");
+                }
+            }
+        });
     }
+
 
     void saveAppointmentToFirebase(Cita cita){
         DocumentReference documentReference;
