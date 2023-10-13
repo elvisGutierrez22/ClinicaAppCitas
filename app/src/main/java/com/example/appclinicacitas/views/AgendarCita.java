@@ -245,7 +245,6 @@ public class AgendarCita extends AppCompatActivity {
             documentReference = Utility.getCollectionReferenceForAppointment().document();
         }
 
-
         documentReference.set(cita).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
