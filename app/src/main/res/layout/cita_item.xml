@@ -15,6 +15,7 @@
         android:background="@color/md_deep_purple_400"
         android:padding="10dp"
         >
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,15 +29,7 @@
                 android:textColor="@color/white"
                 android:textSize="17sp"
                 android:textStyle="bold"/>
-            <ImageView
-                android:id="@+id/deleteButton"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="5dp"
-                android:baselineAlignBottom="false"
-                android:src="@drawable/icono_delete"
-                android:onClick="deleteAppointment"/>
+
 
 
             <TextView
@@ -203,6 +196,26 @@
                 android:textColor="@color/white"
                 android:layout_marginVertical="4dp"
                 android:layout_marginStart="135dp"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+
+            <ImageView
+                android:id="@+id/deleteButton"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="5dp"
+                android:baselineAlignBottom="false"
+                android:src="@drawable/icono_delete"
+                android:onClick="deleteAppointment"
+                />
+
         </RelativeLayout>
     </LinearLayout>
 
